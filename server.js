@@ -28,4 +28,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const userRoutes = require('./routes/user');
 app.use('/api', userRoutes);
 
+app.get('/', (req, res) => {
+  res.send('Zuri CRUD app with Database by Awesome ');
+});
+
 app.listen(port, () => console.log(`App listening on port ${port}!`));
