@@ -1,18 +1,19 @@
-const router = require("express").Router();
-const User = require("../models/user");
+const router = require('express').Router();
+const Zuriuser = require('../models/user');
 
-router.post("/users", async (req, res) => {
+//POST API
+router.post('/zuri_users', async (req, res) => {
   try {
-    let user = new User();
-    user.name = req.body.name;
-    user.email = req.body.email;
-    user.password = req.body.password;
+    let zuri_users = new Zuriuser();
+    zuri_users.name = req.body.name;
+    zuri_users.email = req.body.email;
+    zuri_users.country = req.body.country;
 
-    await user.save();
+    await zuri_users.save();
 
     res.json({
       status: true,
-      message: "User Saved...",
+      message: 'User Saved...',
     });
   } catch (err) {
     res.json({
@@ -21,30 +22,14 @@ router.post("/users", async (req, res) => {
     });
   }
 });
-
-router.get("/users", async (req, res) => {
+// GET API
+router.get('/zuri_users', async (req, res) => {
   try {
-    let users = await User.find();
+    let zuri_users = await Zuriuser.find();
 
     res.json({
       status: true,
-      users: users,
-    });
-  } catch (err) {
-    res.status(500).json({
-      status: false,
-      message: err.message,
-    });
-  }
-});
-
-router.get("/user/:id", async (req, res) => {
-  try {
-    let user = await User.findOne({ _id: req.params.id });
-
-    res.json({
-      status: true,
-      user: user,
+      zuri_users: zuri_users,
     });
   } catch (err) {
     res.status(500).json({
@@ -54,9 +39,25 @@ router.get("/user/:id", async (req, res) => {
   }
 });
 
-router.put("/user/:id", async (req, res) => {
+router.get('/zuri_users/:id', async (req, res) => {
   try {
-    let user = await User.findOneAndUpdate(
+    let zuri_users = await Zuriuser.findOne({ _id: req.params.id });
+
+    res.json({
+      status: true,
+      zuri_users: zuri_users,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: false,
+      message: err.message,
+    });
+  }
+});
+
+router.put('/zuri_users/:id', async (req, res) => {
+  try {
+    let zuri_users = await Zuriuser.findOneAndUpdate(
       { _id: req.params.id },
       {
         $set: {
@@ -70,6 +71,7 @@ router.put("/user/:id", async (req, res) => {
 
     res.json({
       status: true,
+      message: 'User Deleted...',
       updatedProduct: user,
     });
   } catch (err) {
@@ -79,14 +81,14 @@ router.put("/user/:id", async (req, res) => {
     });
   }
 });
-
-router.delete("/user/:id", async (req, res) => {
+//DELETE
+router.delete('/zuri_users/:id', async (req, res) => {
   try {
-    let user = await User.findOneAndDelete({ _id: req.params.id });
+    let zuri_users = await Zuriuser.findOneAndDelete({ _id: req.params.id });
 
     res.json({
       status: true,
-      deletedProduct: user,
+      deletedProduct: zuri_users,
     });
   } catch (err) {
     res.status(500).json({
