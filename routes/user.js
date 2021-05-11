@@ -55,6 +55,7 @@ router.get('/zuri_users/:id', async (req, res) => {
   }
 });
 
+// Update
 router.put('/zuri_users/:id', async (req, res) => {
   try {
     let zuri_users = await Zuriuser.findOneAndUpdate(
@@ -71,8 +72,8 @@ router.put('/zuri_users/:id', async (req, res) => {
 
     res.json({
       status: true,
-      message: 'User Deleted...',
-      updatedProduct: user,
+      message: 'User Updated...',
+      updatedProduct: zuri_users,
     });
   } catch (err) {
     res.status(500).json({
@@ -81,6 +82,7 @@ router.put('/zuri_users/:id', async (req, res) => {
     });
   }
 });
+
 //DELETE
 router.delete('/zuri_users/:id', async (req, res) => {
   try {
