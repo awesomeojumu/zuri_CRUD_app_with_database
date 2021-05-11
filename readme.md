@@ -7,7 +7,7 @@ There are two get apis in this
 - The first gets all Data
 - The second get one data by using the ID attached to every user
 
-NOTE the emmail address must be unique
+NOTE the email address must be unique
 
 ![get](https://user-images.githubusercontent.com/59563982/117855546-7d24fa00-b282-11eb-8b9a-6af095a1a485.png)
 
